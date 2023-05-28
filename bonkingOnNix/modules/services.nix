@@ -14,6 +14,10 @@
           enable = true;
           wayland = true;
         };
+        sessionCommands = '' 
+          xset -dpms
+          xset s off
+        '';
       };
 
       desktopManager.gnome.enable = true;
@@ -38,8 +42,7 @@
     
     flatpak.enable = true;
     dbus.enable = true;
-    
-    qemuGuest.enable = true;
+   
     
     mysql = {
       enable = true;

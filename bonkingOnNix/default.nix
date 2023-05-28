@@ -11,11 +11,7 @@
   system.stateVersion = "23.05";
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebkit-5.212.0-alpha4"
-  ];
-  
+ 
   
   # Random stuff 
   zramSwap.enable = true;
@@ -26,10 +22,10 @@
   environment.variables.EDITOR = "hx";
   environment.systemPackages = with pkgs; [
     wget
-    pkgs.docker
-    pkgs.zsh
-    pkgs.qemu
-    pkgs.libvirt
+    docker
+    zsh
+    qemu
+    libvirt
     virt-manager
     git
     glib
@@ -39,7 +35,6 @@
     elixir
     erlang
     lz4
-    steam
     pkg-config
     ghc
     stack
@@ -50,7 +45,7 @@
     xmobar
     cargo
     rustup
-    pkgs.vscode
+    vscode
     obs-studio
     handbrake
     podman
@@ -59,7 +54,6 @@
     php
     font-awesome
     microcodeIntel
-    qt5.full
     dracula-theme 
     clang
     rust-bindgen
@@ -74,6 +68,11 @@
     libnotify
     helix
     firefox
+    alacritty
+    emacs
+    netcat-openbsd
+    haskellPackages.fourmolu
+    haskellPackages.containers_0_6_7
   ];
  
   programs = {
@@ -111,4 +110,5 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "adbuser" ];
   };
   users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [zsh];
 }

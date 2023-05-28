@@ -8,10 +8,11 @@ in
   shellAliases = {
     ll = "ls -l";
     ns = "nix --experimental-features 'nix-command flakes' search nixpkgs";
+    sys-rebuild = "sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#'";
   };
   oh-my-zsh = {
     enable = true;
-    plugins = [ "git" "rust" "z"];
+    plugins = [ "git" "rust" "z" "tmux" ];
   };
   zplug = {
     enable = true;
@@ -31,5 +32,8 @@ in
     export PATH="$PATH:${pkgs.rustup}"
     export PATH="$PATH:${pkgs.clang}"
     export PATH="$PATH:${pkgs.gcc}"
+
+    export NVM_LAZY_LOAD=true
+    export NMV_COMPLETION=true
     '';
 }
