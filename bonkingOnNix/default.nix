@@ -28,51 +28,25 @@
     libvirt
     virt-manager
     git
-    glib
-    gtk3
-    gtk4
-    gcc
-    elixir
-    erlang
-    lz4
-    pkg-config
-    ghc
-    stack
     open-vm-tools
-    openjdk11
     dmenu
     xmonad-with-packages
     xmobar
-    cargo
-    rustup
     vscode
     obs-studio
     handbrake
     podman
     dunst
     pavucontrol
-    php
     font-awesome
     microcodeIntel
     dracula-theme 
-    clang
-    rust-bindgen
-    kotlin
-    eigen
-    glib
     gnome-network-displays
-    wayland
-    wlr-randr
-    wl-clipboard
-    wlogout
-    libnotify
     helix
     firefox
     alacritty
     emacs
     netcat-openbsd
-    haskellPackages.fourmolu
-    haskellPackages.containers_0_6_7
   ];
  
   programs = {

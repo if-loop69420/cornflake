@@ -18,22 +18,6 @@ in
     pkgs.catppuccin-gtk
   ];
 
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      
-      #window = {
-      #  opacity = 1.0;
-      #};
-
-      colors = {
-        background = "#282a36";
-        foreground = "#44475a";
-      };
-    }; 
-  };
-
   programs.zoxide = {
     enable = true;
     enableNushellIntegration = true;
