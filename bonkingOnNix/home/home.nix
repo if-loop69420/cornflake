@@ -13,9 +13,10 @@ in
   programs.neovim = customNvim pkgs;
   programs.zsh = customZsh pkgs;
   programs.helix = customHelix pkgs;
-  home.packages = [
-    pkgs.gnomeExtensions.material-you-color-theming
-    pkgs.catppuccin-gtk
+  home.packages = with pkgs;[
+    gnomeExtensions.material-you-color-theming
+    catppuccin-gtk
+    lazygit
   ];
 
   programs.zoxide = {
