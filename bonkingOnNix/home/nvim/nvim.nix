@@ -2,8 +2,7 @@ pkgs:
 
 {
   enable = true;
-  viAlias = true;
-  extraConfig = '' 
-    luafile $HOME/.config/dotfiles/bonkingOnNix/home/nvim/init.lua
-  '';
+  plugins = with pkgs.vimPlugins; [
+    nvim-treesitter
+  ];
 }

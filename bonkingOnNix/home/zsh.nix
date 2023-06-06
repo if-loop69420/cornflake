@@ -9,6 +9,7 @@ in
     ll = "ls -l";
     ns = "nix --experimental-features 'nix-command flakes' search nixpkgs";
     sys-rebuild = "sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#'";
+    nvim = "lvim";
   };
   oh-my-zsh = {
     enable = true;

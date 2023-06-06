@@ -7,9 +7,11 @@
       url = github:nix-community/home-manager/master;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, home-manager,  ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland,  ... }@inputs: 
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -17,6 +19,7 @@
     in {
       nixosConfigurations.bonkingOnNix = lib.nixosSystem {
         inherit system;
+        specialArgs = {inherit inputs;};
         modules = [ 
           ./bonkingOnNix
           home-manager.nixosModules.home-manager {
@@ -28,6 +31,7 @@
             home-manager.users.jeremy = {
               imports = [
                 ./bonkingOnNix/home/home.nix
+                hyprland.homeManagerModules.default
               ];
             };
           }  

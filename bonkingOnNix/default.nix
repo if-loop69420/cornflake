@@ -1,8 +1,10 @@
 {
   config,
   pkgs,
+  inputs,
   ...
-}: {
+}: let
+in {
   imports = [
     ./hardware-configuration.nix
     ./modules
@@ -47,6 +49,12 @@
     alacritty
     emacs
     netcat-openbsd
+    gcc
+    lua
+    luajit
+    clang
+    xlockmore
+    dbus
   ];
  
   programs = {
@@ -70,13 +78,20 @@
       enable = true;
     };
   };
+
+  programs.light.enable = true;
+
+  programs.hyprland = {
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    enable = true;
+  };
   
   # Security 
   security = {
     rtkit.enable = true;
     polkit.enable = true;
   };
-  
+
   # Users
   users.users.jeremy = {
     isNormalUser = true;

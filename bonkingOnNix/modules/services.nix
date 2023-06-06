@@ -9,10 +9,11 @@
     # XServer
     xserver = {
       enable = true;
+      xautolock.enable = true;
       displayManager = {
-        gdm = {
+        lightdm = {
           enable = true;
-          wayland = true;
+         #wayland = true;
         };
         sessionCommands = '' 
           xset -dpms
@@ -56,5 +57,6 @@
         }
       ];
     };
+
   };
 }
