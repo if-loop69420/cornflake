@@ -124,7 +124,9 @@ in
       enable = true;
       hidpi = true;
     };
-    nvidiaPatches = false;
+    recommendedEnvironment = true;
+    systemdIntegration = true;
+    nvidiaPatches = true;
     extraConfig = ''
       input {
         kb_layout = de
@@ -210,7 +212,8 @@ in
       bind = $mainMod, P, pseudo
 
       bind = $mainMod, V, togglesplit, # dwindle
-      bind = $mainMod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show drun
+      bind = $mainMod, SPACE, exec, wofi --show drun
+      bind = $mainMod SHIFT, Q, exec, hyprctl dispatch exit
 
       bind = $mainMod, H, movefocus, l
       bind = $mainMod, L, movefocus, r
