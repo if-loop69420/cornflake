@@ -127,6 +127,7 @@ in
     recommendedEnvironment = true;
     systemdIntegration = true;
     nvidiaPatches = true;
+    package = pkgs.hyprland;
     extraConfig = ''
       input {
         kb_layout = de
