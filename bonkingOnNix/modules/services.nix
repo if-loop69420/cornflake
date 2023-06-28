@@ -23,10 +23,6 @@
           xset -dpms
           xset s off
         '';
-
-        sessionPackages = [
-          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-        ];
       };
 
       desktopManager.gnome.enable = true;
