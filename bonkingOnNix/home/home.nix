@@ -124,7 +124,7 @@ in
       enable = true;
       hidpi = true;
     };
-    nvidiaPatches = true;
+    nvidiaPatches = false;
     extraConfig = ''
       input {
         kb_layout = de
@@ -196,6 +196,11 @@ in
       exec-once = wl-paste -t text --watch clipman store --no-persist
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
+      env = LIBVA_DRIVER_NAME,nvidia
+      env = XDG_SESSION_TYPE,wayland
+      env = GBM_BACKEND,nvidia-drm
+      env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+      env = WLR_NO_HARDWARE_CURSORS,1
 
 
       $mainMod = ALT
@@ -205,7 +210,7 @@ in
       bind = $mainMod, P, pseudo
 
       bind = $mainMod, V, togglesplit, # dwindle
-      bind = $mainMod, SPACE, exec, ${pkgs.wofi}/bin/wofi -modi run -show drun
+      bind = $mainMod, SPACE, exec, ${pkgs.wofi}/bin/wofi --show drun
 
       bind = $mainMod, H, movefocus, l
       bind = $mainMod, L, movefocus, r
@@ -247,4 +252,6 @@ in
     package = pkgs.rofi-wayland;
     enable = true;
   };
+
+
 }

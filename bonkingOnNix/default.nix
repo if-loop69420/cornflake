@@ -55,12 +55,10 @@ in {
     clang
     xlockmore
     dbus
+    steam
   ];
  
   programs = {
-    steam = {
-      enable = true;
-    };
     zsh = {
       enable = true;
       shellAliases = {
@@ -100,4 +98,6 @@ in {
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
+  
+
 }

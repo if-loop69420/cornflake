@@ -19,6 +19,7 @@ in
     enable = true;
     plugins = [
       { name = "zsh-users/zsh-autosuggestions"; }
+      { name = "zsh-users/zsh-history-substring-search";}
       { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1]; }
       { name = "dracula/zsh"; tags= [ as:theme depth:2]; }
       { name = "zsh-users/zsh-syntax-highlighting"; }
@@ -38,4 +39,8 @@ in
     export NVM_LAZY_LOAD=true
     export NMV_COMPLETION=true
     '';
+
+  initExtraFirst = '' 
+    pfetch
+  '';
 }

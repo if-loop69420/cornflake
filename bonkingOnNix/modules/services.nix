@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   services = {
@@ -9,20 +10,30 @@
     # XServer
     xserver = {
       enable = true;
-      xautolock.enable = true;
+      xautolock = {
+        enable = true;
+      };
       displayManager = {
         lightdm = {
           enable = true;
+          greeters.pantheon.enable = true;
          #wayland = true;
         };
         sessionCommands = '' 
           xset -dpms
           xset s off
         '';
+
+        sessionPackages = [
+          #inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+        ];
       };
 
       desktopManager.gnome.enable = true;
       windowManager.xmonad.enable = true;
+      windowManager.qtile = {
+        enable = true;
+      };
       
       # General stuff
       videoDrivers = ["nvidia"];
@@ -57,6 +68,5 @@
         }
       ];
     };
-
   };
 }
