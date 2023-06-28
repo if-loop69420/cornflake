@@ -78,7 +78,6 @@ in {
   };
 
   programs.light.enable = true;
-
   programs.hyprland = {
     package = null;
     enable = true;

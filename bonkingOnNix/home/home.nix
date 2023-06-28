@@ -107,6 +107,7 @@ in
 
   wayland.windowManager.sway = {
     enable = true;
+    package = pkgs.hyprland;
     config = rec {
       modifier = "Mod4";
       # Use kitty as default terminal
