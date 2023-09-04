@@ -1,0 +1,7 @@
+steam.sh[30620]: Running Steam on nixos 23.11 64-bit
+steam.sh[30620]: STEAM_RUNTIME is enabled automatically
+setup.sh[30699]: Steam runtime environment up-to-date!
+run.sh[30711]: Warning: An unexpected error occurred while executing "/sbin/ldconfig -XNv", the exit status was 127
+steam.sh[30620]: Steam client's requirements are satisfied
+07/22 17:51:33 Init: Installing breakpad exception handler for appid(steam)/version(1689814451)/tid(30734)
+/home/jeremy/.local/share/Steam/steam.sh: line 798: 30734 Killed                  "$STEAMROOT/$STEAMEXEPATH" "$@"

@@ -31,7 +31,8 @@
   };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/06cdc00d-30a0-4bf1-972f-fcf64dd4418c"; }
+    [ 
+      { device = "/dev/disk/by-uuid/06cdc00d-30a0-4bf1-972f-fcf64dd4418c"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -42,7 +43,8 @@
   # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+  powerManagement.enable = true;
   
   # Hardware options 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -52,9 +54,26 @@
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  hardware.bluetooth.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.pulseaudio.enable = false;
+  hardware.xpadneo.enable = true;
+
+  hardware.bluetooth = {
+      enable = true;
+      # battery info support
+      package = pkgs.bluez5-experimental;
+      # settings = {
+      #   # make Xbox Series X controller work
+      #   General = {
+      #     Class = "0x000100";
+      #     ControllerMode = "bredr";
+      #     FastConnectable = true;
+      #     JustWorksRepairing = "always";
+      #     Privacy = "device";
+      #     Experimental = true;
+      #   };
+      # };
+    };
   
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

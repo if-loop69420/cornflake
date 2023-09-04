@@ -13,12 +13,11 @@
     };
     resumeDevice = "/dev/nvme0n1p3";
     
-    #binfmt.emulatedSystems = [
-    #  "armv7l-linux"
-    #  "riscv64-linux"
-    #  "wasm32-wasi"
-    #  "x86_64-windows"
-    #];
+    binfmt.emulatedSystems = [
+      "armv7l-linux"
+      "riscv64-linux"
+      "wasm32-wasi"
+    ];
 
     kernelPackages = pkgs.linuxPackages_zen;
     initrd = {

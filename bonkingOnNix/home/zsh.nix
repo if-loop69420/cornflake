@@ -8,7 +8,7 @@ in
   shellAliases = {
     ll = "ls -l";
     ns = "nix --experimental-features 'nix-command flakes' search nixpkgs";
-    sys-rebuild = "sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#'";
+    sys-rebuild = "sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#bonkingOnNix'";
     nvim = "lvim";
   };
   oh-my-zsh = {

@@ -22,6 +22,11 @@ in {
   systemd.targets.suspend.enable = true;
   
   environment.variables.EDITOR = "hx";
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL="1";
+  };
+
   environment.systemPackages = with pkgs; [
     wget
     docker
@@ -34,7 +39,6 @@ in {
     dmenu
     xmonad-with-packages
     xmobar
-    vscode
     obs-studio
     handbrake
     podman
@@ -50,12 +54,21 @@ in {
     emacs
     netcat-openbsd
     gcc
+    glib
     lua
     luajit
     clang
-    xlockmore
     dbus
-    steam
+    (waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true"];
+    })
+    )
+    rofi-wayland
+    mako 
+    libnotify
+    swayidle
+    swaylock
+    hyprpaper
   ];
  
   programs = {
@@ -75,28 +88,44 @@ in {
     dconf = {
       enable = true;
     };
+    steam = {
+      enable = true;
+    };
   };
 
   programs.light.enable = true;
   programs.hyprland = {
-    package = null;
     enable = true;
+    enableNvidiaPatches = true;
+    xwayland.enable = true;
   };
   
   # Security 
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    pam.services.swaylock = {
+      text = ''
+        auth include login
+      '';
+    };
   };
 
   # Users
   users.users.jeremy = {
     isNormalUser = true;
     description = "jeremy";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "adbuser" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "adbuser" "video" "input"];
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
+  };
   
 
 }

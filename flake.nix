@@ -7,11 +7,9 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland,  ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -31,7 +29,6 @@
             home-manager.users.jeremy = {
               imports = [
                 ./bonkingOnNix/home/home.nix
-                hyprland.homeManagerModules.default
               ];
             };
           }  

@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     nerdfonts
     source-code-pro
     font-awesome
