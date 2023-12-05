@@ -41,6 +41,8 @@ in
     '';
 
   initExtraFirst = '' 
+    if [ "$TMUX" = "" ]; then tmux; fi
+    eval "$(direnv hook zsh)"
     pfetch
   '';
 }

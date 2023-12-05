@@ -15,7 +15,7 @@
         "virbr0"
         "nm-bridge"
       ];
-      qemu.runAsRoot = false;
+      qemu.runAsRoot = true;
       qemu.ovmf = {
         enable = true;
         packages = [pkgs.OVMFFull];

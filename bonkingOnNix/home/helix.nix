@@ -39,6 +39,9 @@ pkgs:
     }
     {
       name = "html";
+      injection-regex = "html";
+      file-types = ["svelte" "html"];
+      language-server = { command="html-languageserver";};
     }
     {
       name = "css";

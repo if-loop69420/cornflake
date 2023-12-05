@@ -3,7 +3,6 @@
 let 
   customNvim = import ./nvim/nvim.nix;
   customZsh = import ./zsh.nix;
-  customSway = import ./sway.nix;
   customHelix = import ./helix.nix;
 in 
 {
@@ -25,6 +24,12 @@ in
     wl-clipboard
     steam
     foliate
+    espeak
+    distrobox
+    xq
+    signal-desktop
+    remmina
+    firefox-wayland
   ];
 
   programs.zoxide = {
@@ -57,6 +62,7 @@ in
       dracula-theme.theme-dracula
       vscodevim.vim
       matklad.rust-analyzer
+      vadimcn.vscode-lldb
     ];
   };
 
@@ -64,7 +70,7 @@ in
   programs.tmux = {
     enable = true;
     clock24 = true;
-    shortcut = "a";
+    shortcut = "x";
     secureSocket=true;
     plugins = with pkgs; [
       tmuxPlugins.catppuccin

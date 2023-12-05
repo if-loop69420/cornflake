@@ -10,14 +10,42 @@ in {
     ./modules
   ];  
   
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.trusted-users = ["root" "@wheel"];
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly"; 
+    options = "--delete-old";
+  };
+
+  nix.buildMachines = [
+    {
+      hostName = "builder@172.18.2.21";
+      systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+
+      maxJobs = 24;
+      speedFactor = 2;
+      supportedFeatures = [ "big-parallel" ];
+      mandatoryFeatures = [ ];
+      
+    }
+  ];
+  nix.distributedBuilds = true;
+  nix.extraOptions = '' 
+    builders-use-substitutes = true
+  '';
  
   
   # Random stuff 
   zramSwap.enable = true;
   sound.enable = true;
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
   
   systemd.targets.suspend.enable = true;
   
@@ -32,7 +60,6 @@ in {
     docker
     zsh
     qemu
-    libvirt
     virt-manager
     git
     open-vm-tools
@@ -50,6 +77,7 @@ in {
     gnome-network-displays
     helix
     firefox
+    firefox-wayland
     alacritty
     emacs
     netcat-openbsd
@@ -69,6 +97,16 @@ in {
     swayidle
     swaylock
     hyprpaper
+    networkmanagerapplet
+    pv
+    qtcreator
+    espeak
+    OVMFFull
+    ccls
+    zls
+    polkit_gnome
+    gnupg
+    pulseaudio
   ];
  
   programs = {
@@ -115,7 +153,7 @@ in {
   users.users.jeremy = {
     isNormalUser = true;
     description = "jeremy";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "adbuser" "video" "input"];
+    extraGroups = [ "networkmanager" "dialout" "wheel" "docker" "libvirtd" "adbuser" "video" "input"];
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
@@ -123,6 +161,7 @@ in {
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-wlr
     ];
   };
