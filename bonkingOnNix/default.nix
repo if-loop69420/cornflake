@@ -165,6 +165,4 @@ in {
       xdg-desktop-portal-wlr
     ];
   };
-  
-
 }
