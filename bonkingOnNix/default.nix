@@ -134,7 +134,6 @@ in {
   programs.light.enable = true;
   programs.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     xwayland.enable = true;
   };
   
@@ -153,7 +152,7 @@ in {
   users.users.jeremy = {
     isNormalUser = true;
     description = "jeremy";
-    extraGroups = [ "networkmanager" "dialout" "wheel" "docker" "libvirtd" "adbuser" "video" "input"];
+    extraGroups = [ "networkmanager" "dialout" "wheel" "docker" "libvirtd" "adbuser" "video" "input" "kvm"];
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];

@@ -30,6 +30,7 @@ in
     signal-desktop
     remmina
     firefox-wayland
+    anki-bin
   ];
 
   programs.zoxide = {
@@ -64,6 +65,15 @@ in
       matklad.rust-analyzer
       vadimcn.vscode-lldb
     ];
+  };
+
+  services.mako = {
+    enable = true;
+    actions = true;
+    backgroundColor = "#282A36";
+    borderColor = "#44475A";
+    borderRadius = 10;
+    defaultTimeout = 5000;
   };
 
 
