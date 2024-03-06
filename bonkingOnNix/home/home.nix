@@ -13,7 +13,6 @@ in
   programs.zsh = customZsh pkgs;
   programs.helix = customHelix pkgs;
   home.packages = with pkgs;[
-    gnomeExtensions.material-you-color-theming
     catppuccin-gtk
     lazygit
     vimPlugins.nvim-treesitter
@@ -47,11 +46,12 @@ in
   programs.nushell = {
     enable = true;
     extraConfig = '' 
-      let-env config = {
+      $env.config = {
         show_banner: false
       }
 
       alias sys-rebuild = sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#'
+      source ~/.zoxide.nu
     '';
 
     

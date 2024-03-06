@@ -35,6 +35,7 @@ in
     export PATH="$PATH:${pkgs.clang}"
     export PATH="$PATH:${pkgs.gcc}"
     export PATH=/home/jeremy/.local/bin:$PATH
+    export TERM=tmux-256color
 
     export NVM_LAZY_LOAD=true
     export NMV_COMPLETION=true

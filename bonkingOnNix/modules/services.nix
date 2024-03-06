@@ -31,7 +31,7 @@
      
       # General stuff
       videoDrivers = ["nvidia"];
-      layout = "at,us";
+      xkb.layout = "at,us";
       libinput = {
         enable = true;
         touchpad.tapping = true;
@@ -49,7 +49,7 @@
     dbus.enable = true;
     printing = {
       enable = true;
-      drivers = with pkgs; [ hplip gutenprint ];
+      drivers = with pkgs; [ hplip gutenprint samsung-unified-linux-driver];
     };
 
     # emacs = {
@@ -61,7 +61,7 @@
     };
     
     tlp = {
-      enable = false;
+      enable = true;
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -84,6 +84,11 @@
         USB_AUTOSUSPEND   =0;
         USB_EXCLUDE_BTUSB =1;
 
+        START_CHARGE_THRESH_BAT0 = 0;
+        STOP_CHARGE_THRESH_BAT0 = 0;
+        RESTORE_THRESHOLDS_ON_BAT=0;
+
+        NATACPI_ENABLE=1;
         
       };
     };

@@ -27,7 +27,7 @@ in {
       systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
 
       maxJobs = 24;
-      speedFactor = 2;
+      speedFactor = 4;
       supportedFeatures = [ "big-parallel" ];
       mandatoryFeatures = [ ];
       
@@ -107,9 +107,16 @@ in {
     polkit_gnome
     gnupg
     pulseaudio
+    ranger
   ];
  
   programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        zstd
+      ];
+    };
     zsh = {
       enable = true;
       shellAliases = {
@@ -127,7 +134,7 @@ in {
       enable = true;
     };
     steam = {
-      enable = true;
+      enable = false;
     };
   };
 
@@ -154,14 +161,16 @@ in {
     description = "jeremy";
     extraGroups = [ "networkmanager" "dialout" "wheel" "docker" "libvirtd" "adbuser" "video" "input" "kvm"];
   };
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [zsh];
+  users.extraGroups.vboxusers.members = ["jeremy"];
+  users.defaultUserShell = pkgs.nushell;
+  environment.shells = with pkgs; [zsh nushell];
 
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gnome
       xdg-desktop-portal-wlr
+      xdg-desktop-portal-hyprland
     ];
   };
 }
