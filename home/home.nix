@@ -6,7 +6,7 @@ let
   customHelix = import ./helix.nix;
 in 
 {
-  home.stateVersion="23.05";
+  home.stateVersion="24.05";
   home.username="jeremy";
   home.homeDirectory="/home/jeremy";
   programs.neovim = customNvim pkgs;
@@ -30,12 +30,39 @@ in
     remmina
     firefox-wayland
     anki-bin
+    grimblast
   ];
 
   programs.zoxide = {
     enable = true;
     enableNushellIntegration = true;
   };
+
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      format = "$shlvl$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
+      character = {
+        success_symbol = "[➜](bold green)";
+         error_symbol = "[➜](bold red)";
+      };
+      shlvl = {
+        disabled = false;
+        symbol = ">";
+        style = "bright-pink bold";
+      };
+      username = {
+        style_user = "bright-white bold";
+        style_root = "bright-red bold";
+      };
+    };
+  };
+  
 
   programs.git = {
     enable = true;
@@ -46,12 +73,35 @@ in
   programs.nushell = {
     enable = true;
     extraConfig = '' 
+      let carapace_completer = {|spans|
+      carapace $spans.0 nushell ...$spans | from json
+      }
+    
       $env.config = {
         show_banner: false
+        completions: {
+        case_sensitive: false # case-sensitive completions
+        quick: true    # set to false to prevent auto-selecting completions
+        partial: true    # set to false to prevent partial filling of the prompt
+        algorithm: "fuzzy"    # prefix or fuzzy
+        external: {
+        # set to false to prevent nushell looking into $env.PATH to find more suggestions
+            enable: true 
+        # set to lower can improve completion performance at the cost of omitting some options
+            max_results: 100 
+            completer: $carapace_completer # check 'carapace_completer' 
+          }
+        }
       }
 
       alias sys-rebuild = sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#'
+      alias anki-bin = ANKI_WAYLAND=1 anki-bin
       source ~/.zoxide.nu
+      source ~/.cache/starship/init.nu
+      $env.CARAPACE_BRIDGES = 'zsh,bash'
+      if ($env | get -i TMUX | is-empty) {
+        tmux
+      }
     '';
 
     

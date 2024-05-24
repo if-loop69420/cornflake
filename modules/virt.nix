@@ -8,7 +8,6 @@
     docker.enable = true;
     docker.enableNvidia = true;
     podman.enable = true;
-    virtualbox.host.enable = true;
     kvmgt.enable = true;
     libvirtd = {
       enable = true;

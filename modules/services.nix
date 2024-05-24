@@ -10,7 +10,14 @@
 
     udev = {
       enable = true;
+      packages = [
+        pkgs.android-udev-rules
+      ];
     };
+
+    # tailscale = {
+    #   enable = true;
+    # };
           
     # XServer
     xserver = {
@@ -32,10 +39,12 @@
       # General stuff
       videoDrivers = ["nvidia"];
       xkb.layout = "at,us";
-      libinput = {
-        enable = true;
-        touchpad.tapping = true;
-      };
+    };
+
+    
+    libinput = {
+      enable = true;
+      touchpad.tapping = true;
     };
     
     pipewire = {
@@ -49,14 +58,14 @@
     dbus.enable = true;
     printing = {
       enable = true;
-      drivers = with pkgs; [ hplip gutenprint samsung-unified-linux-driver];
+      drivers = with pkgs; [ hplip gutenprint samsung-unified-linux-driver ptouch-driver];
     };
 
-    # emacs = {
-    #   enable = true;
-    #   package = pkgs.emacs;
-    # };
     thermald = {
+      enable = true;
+    };
+
+    ratbagd = {
       enable = true;
     };
     
@@ -72,7 +81,7 @@
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
+        CPU_MAX_PERF_ON_BAT = 66;
 
         CPU_BOOST_ON_AC=1;
         CPU_BOOST_ON_BAT=0;
@@ -89,7 +98,6 @@
         RESTORE_THRESHOLDS_ON_BAT=0;
 
         NATACPI_ENABLE=1;
-        
       };
     };
     power-profiles-daemon.enable = false;

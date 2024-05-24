@@ -4,7 +4,7 @@ let
 
 in
 {
-  enable = true;
+  enable = false;
   shellAliases = {
     ll = "ls -l";
     ns = "nix --experimental-features 'nix-command flakes' search nixpkgs";

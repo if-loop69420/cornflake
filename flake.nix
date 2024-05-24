@@ -28,7 +28,7 @@
             };
             home-manager.users.jeremy = {
               imports = [
-                ./bonkingOnNix/home/home.nix
+                ./home/home.nix
               ];
             };
           }  

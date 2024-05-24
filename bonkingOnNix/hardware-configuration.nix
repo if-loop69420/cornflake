@@ -15,9 +15,7 @@
     "vm.swappiness" = 60;
   };
 
-  boot.kernelParams = [ "resume=/dev/nvme0n1p2"];
-
-  boot.resumeDevice = "/var/lib/swapfile";
+  boot.kernelParams = [ "libata.force=1:disable,2:disable,3:disable"];
 
   boot.extraModulePackages = [ ];
 
@@ -38,14 +36,6 @@
     fsType = "ext4";
   };
 
-
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 32 * 1024;
-    }
-  ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -59,29 +49,24 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.forceFullCompositionPipeline = true;
+  hardware.nvidia.prime = {
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
+
+    intelBusId = "PCI:0:1:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.pulseaudio.enable = false;
-  hardware.xpadneo.enable = true;
 
   hardware.bluetooth = {
       enable = true;
-      # battery info support
-      package = pkgs.bluez5-experimental;
-      # settings = {
-      #   # make Xbox Series X controller work
-      #   General = {
-      #     Class = "0x000100";
-      #     ControllerMode = "bredr";
-      #     FastConnectable = true;
-      #     JustWorksRepairing = "always";
-      #     Privacy = "device";
-      #     Experimental = true;
-      #   };
-      # };
-    };
+  };
   
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

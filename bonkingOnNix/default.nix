@@ -7,7 +7,7 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ./modules
+    ../modules
   ];  
   
   system.stateVersion = "23.11";
@@ -40,6 +40,13 @@ in {
  
   
   # Random stuff 
+  documentation = {
+    enable  = true;
+    dev.enable = true;
+    man = {
+      man-db.enable = true;
+    };
+  };
   zramSwap.enable = true;
   sound.enable = true;
   powerManagement = {
@@ -108,6 +115,10 @@ in {
     gnupg
     pulseaudio
     ranger
+    piper
+    ptouch-driver
+    man-pages
+    man-pages-posix
   ];
  
   programs = {
@@ -136,6 +147,26 @@ in {
     steam = {
       enable = false;
     };
+
+    starship = {
+      enable = true;
+      settings = {
+        format = "$shlvl$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
+        character = {
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[➜](bold red)";
+        };
+        shlvl = {
+          disabled = false;
+          symbol = ">";
+          style = "bright-pink bold";
+        };
+        username = {
+          style_user = "bright-white bold";
+          style_root = "bright-red bold";
+        };
+      };
+    };
   };
 
   programs.light.enable = true;
@@ -163,7 +194,7 @@ in {
   };
   users.extraGroups.vboxusers.members = ["jeremy"];
   users.defaultUserShell = pkgs.nushell;
-  environment.shells = with pkgs; [zsh nushell];
+  environment.shells = with pkgs; [nushell];
 
   xdg.portal = {
     enable = true;
