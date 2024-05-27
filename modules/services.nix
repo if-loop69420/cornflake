@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   services = {
@@ -117,5 +118,6 @@
           TimeoutStopSec = 10;
         };
     };
+    services.NetworkManager-wait-online.enable = lib.mkForce false;
   };
 }
