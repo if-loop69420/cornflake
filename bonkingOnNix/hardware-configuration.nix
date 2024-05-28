@@ -15,7 +15,11 @@
     "vm.swappiness" = 60;
   };
 
-  boot.kernelParams = [ "libata.force=1:disable,2:disable,3:disable"];
+  boot.kernelParams = [ 
+    "libata.force=1:disable,2:disable,3:disable"
+    # "nvidia-drm.modset=1"
+    # "initcall_blacklist=simpledrm_platform_driver_init"  
+  ];
 
   boot.extraModulePackages = [ ];
 

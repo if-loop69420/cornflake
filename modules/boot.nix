@@ -18,7 +18,7 @@
       "wasm32-wasi"
     ];
 
-    kernelPackages = pkgs.linuxPackages_6_9;
+    kernelPackages = pkgs.linuxPackages_zen;
     initrd = {
       secrets = {
         "/crypto_keyfile.bin" = null;

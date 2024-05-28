@@ -10,7 +10,7 @@ in {
     ../modules
   ];  
   
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.11";
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["root" "@wheel"];
@@ -170,9 +170,15 @@ in {
   };
 
   programs.light.enable = true;
-  programs.hyprland = {
+  programs.sway = {
     enable = true;
-    xwayland.enable = true;
+    wrapperFeatures.gtk = true;
+    package = pkgs.swayfx;
+    extraOptions = [
+      "--verbose"
+      "--debug"
+      "--unsupported-gpu"
+    ];
   };
   
   # Security 
