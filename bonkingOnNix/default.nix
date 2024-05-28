@@ -71,8 +71,6 @@ in {
     git
     open-vm-tools
     dmenu
-    xmonad-with-packages
-    xmobar
     obs-studio
     handbrake
     podman

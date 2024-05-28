@@ -134,7 +134,7 @@ in
       terminal = "alacritty"; 
       startup = [
         # Launch Firefox on start
-        {command = "firefox";}
+        {command = "~/.config/start.sh";}
       ];
     };
   };
