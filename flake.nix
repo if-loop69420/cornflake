@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri.url = "github:sodiboo/niri-flake"
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = { self, nixpkgs, home-manager, niri, ... }@inputs: 
@@ -21,7 +21,7 @@
         specialArgs = {inherit inputs;};
         modules = [ 
           ./bonkingOnNix
-          niri.nixosModules.niri;
+          niri.nixosModules.niri
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

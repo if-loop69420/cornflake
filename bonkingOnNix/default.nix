@@ -8,7 +8,9 @@ in {
   imports = [
     ./hardware-configuration.nix
     ../modules
-  ];  
+  ];
+
+  nixpkgs.overlays = [inputs.niri.overlays.niri];
   
   system.stateVersion = "24.11";
   nixpkgs.config.allowUnfree = true;
@@ -118,6 +120,7 @@ in {
     man-pages
     man-pages-posix
     vulkan-validation-layers
+    fuzzel
   ];
  
   programs = {
@@ -149,6 +152,8 @@ in {
 
     niri = {
       enable = true;
+      package = pkgs.niri-stable;
+      config = (builtins.readFile ./niri.conf);
     };
 
     starship = {
@@ -209,7 +214,6 @@ in {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gnome
-      xdg-desktop-portal-wlr
     ];
   };
 }
