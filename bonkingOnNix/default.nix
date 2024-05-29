@@ -117,6 +117,7 @@ in {
     ptouch-driver
     man-pages
     man-pages-posix
+    vulkan-validation-layers
   ];
  
   programs = {
@@ -146,6 +147,10 @@ in {
       enable = false;
     };
 
+    niri = {
+      enable = true;
+    };
+
     starship = {
       enable = true;
       settings = {
@@ -168,16 +173,16 @@ in {
   };
 
   programs.light.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    package = pkgs.swayfx;
-    extraOptions = [
-      "--verbose"
-      "--debug"
-      "--unsupported-gpu"
-    ];
-  };
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true;
+  #   # package = pkgs.swayfx;
+  #   extraOptions = [
+  #     "--verbose"
+  #     "--debug"
+  #     "--unsupported-gpu"
+  #   ];
+  # };
   
   # Security 
   security = {
@@ -205,7 +210,6 @@ in {
     extraPortals = with pkgs; [
       xdg-desktop-portal-gnome
       xdg-desktop-portal-wlr
-      xdg-desktop-portal-hyprland
     ];
   };
 }
