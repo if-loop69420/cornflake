@@ -153,7 +153,6 @@ in {
     niri = {
       enable = true;
       package = pkgs.niri-stable;
-      config = (builtins.readFile ./niri.conf);
     };
 
     starship = {
