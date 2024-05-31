@@ -169,12 +169,12 @@ in
       layout = {
         gaps = 16;
         center-focused-column = "never";
-        # default-column-width = 1.;
-        # preset-column-widths = [
-          # { proportion = 1./3.; }
-          # { proportion = 1./2.; }
-          # { proportion = 2./3.; }
-        # ];
+        default-column-width = { proportion = 1.0; };
+        preset-column-widths = [
+          { proportion = 0.333; }
+          { proportion = 0.5; }
+          { proportion = 0.667; }
+        ];
 
         
         focus-ring = {
@@ -210,7 +210,7 @@ in
         "XF86AudioMicMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
 
         # Everything regarding windows
-        "Alt+Ctrl+C".action = close-window;
+        "Alt+Shift+C".action = close-window;
         "Alt+Left".action = focus-column-left;
         "Alt+Right".action = focus-column-right;
         "Alt+Up".action = focus-window-up;
@@ -221,6 +221,12 @@ in
         "Alt+Shift+Down".action = move-window-down;
 
         # Workspaces and monitors
+        "Mod+Up".action = focus-workspace-up;
+        "Mod+Down".action = focus-workspace-down;
+        "Mod+Shift+Up".action = move-window-to-workspace-up;
+        "Mod+Shift+Down".action = move-window-to-workspace-down;
+        "Mod+Ctrl+Up".action = move-column-to-workspace-up;
+        "Mod+Ctrl+Down".action = move-column-to-workspace-down;
         "Alt+Ctrl+Down".action = move-workspace-down;
         "Alt+Ctrl+Up".action = move-workspace-up;
         "Alt+Ctrl+Left".action = focus-monitor-left;
@@ -265,9 +271,12 @@ in
         "Alt+Space".action = fullscreen-window;
         "Alt+Shift+Space".action = maximize-column;
         "Alt+C".action = center-column;
-        "Alt+Plus".action = set-window-height "+10%";
-        "Alt+Equals".action = set-window-height "+10%";
-        "Alt+Minus".action = set-window-height "+-10%";
+        "Alt+Plus".action   = set-column-width "+10%";
+        "Alt+Equal".action = set-column-width "+10%";
+        "Alt+Minus".action  = set-column-width "-10%";
+        "Mod+Plus".action   = set-window-height "+10%";
+        "Mod+Equal".action = set-window-height "+10%";
+        "Mod+Minus".action  = set-window-height "-10%";
 
         # Screenshots, Monitor off and Exit
         "Alt+Shift+Q".action = quit;
