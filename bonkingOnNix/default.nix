@@ -12,7 +12,7 @@ in {
 
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   
-  system.stateVersion = "24.11";
+  system.stateVersion = "24.05";
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["root" "@wheel"];
@@ -103,7 +103,6 @@ in {
     libnotify
     swayidle
     swaylock
-    hyprpaper
     networkmanagerapplet
     pv
     qtcreator
@@ -121,6 +120,9 @@ in {
     man-pages-posix
     vulkan-validation-layers
     fuzzel
+    jq
+    waypaper
+    swww
   ];
  
   programs = {

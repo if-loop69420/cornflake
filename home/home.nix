@@ -13,6 +13,7 @@ in
   programs.zsh = customZsh pkgs;
   programs.helix = customHelix pkgs;
   home.packages = with pkgs;[
+    anki-bin
     catppuccin-gtk
     lazygit
     vimPlugins.nvim-treesitter
@@ -134,7 +135,8 @@ in
       terminal = "alacritty"; 
       startup = [
         # Launch Firefox on start
-        {command = "~/.config/start.sh";}
+        {command = "sh -c ~/.config/start.sh";}
+        {command = "light -I";}
       ];
     };
   };
@@ -157,6 +159,10 @@ in
         };
       };
 
+      cursor = {
+        size = 16;
+      };
+
       outputs."eDP-1" = {
         mode = {
           height = 1080;
@@ -166,29 +172,61 @@ in
         variable-refresh-rate = true;
       };
 
+      outputs."DP-1" = {
+        mode = {
+          height = 1080;
+          width = 1920;
+          refresh = 75.0;
+        };
+        variable-refresh-rate = true;
+        position = {
+          x = 1920;
+          y = 0;
+        };
+      };
+
       layout = {
-        gaps = 16;
+        gaps = 12;
         center-focused-column = "never";
-        default-column-width = { proportion = 1.0; };
+        default-column-width = { proportion = 0.5; };
         preset-column-widths = [
           { proportion = 0.333; }
           { proportion = 0.5; }
           { proportion = 0.667; }
         ];
 
+        # decoration = {
+        #   gradient = {
+        #     from = "rgb(255, 121, 198)";
+        #     to = "rgb(189, 147, 249)";
+        #   }
+        # };
         
         focus-ring = {
           enable = true;
-          # active = "#7fc8ff";
-          # inactive = "#505050";
+          active = { color = "rgb(68, 71, 90)"; };
+          inactive = { color = "rgb(40 42 54)"; };
           width = 4;
         };
 
         border = {
           enable = true;
           width = 4;
-          # active = "#ffc87f";
-          # inactive = "#505050";
+          active = { gradient = {
+              from = "#BD93F9";
+              to = "#FF79C6";
+              angle = 345;
+              relative-to = "window";
+            }; 
+          };
+
+          inactive = { gradient = {
+              from = "#50FA7B";
+              to = "#8BE9FD";
+              angle = 345;
+              relative-to = "window";
+            }; 
+          };
         };
       };
 
@@ -203,11 +241,13 @@ in
         "Alt+Shift+Slash".action = show-hotkey-overlay;
         "Alt+Return".action.spawn = "alacritty";
         "Alt+Shift+Return".action.spawn = "fuzzel";
-        "Shift+Alt+L".action.spawn = "swaylock -f image ~/Pictures/wallpaper-master/nixos.png --clock";
+        "Alt+L".action.spawn = ["swaylock" "-f" "image" "~/Pictures/wallpaper-master/nixos.png" "--clock"];
         "XF86AudioRaiseVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
         "XF86AudioLowerVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"];
         "XF86AudioMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
         "XF86AudioMicMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
+        "XF86MonBrightnessUp".action.spawn = ["light" "-A" "5"];
+        "XF86MonBrightnessDown".action.spawn = ["light" "-U" "5"];        
 
         # Everything regarding windows
         "Alt+Shift+C".action = close-window;
