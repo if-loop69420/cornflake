@@ -169,6 +169,10 @@ in
           width = 1920;
           refresh = 60.056;
         };
+        position = {
+          x = 0;
+          y = 0;
+        };
         variable-refresh-rate = true;
       };
 
@@ -181,7 +185,7 @@ in
         variable-refresh-rate = true;
         position = {
           x = 1920;
-          y = 0;
+          y = 60;
         };
       };
 

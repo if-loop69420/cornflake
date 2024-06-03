@@ -123,6 +123,7 @@ in {
     jq
     waypaper
     swww
+    cage
   ];
  
   programs = {
