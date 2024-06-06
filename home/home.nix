@@ -13,6 +13,7 @@ in
   programs.neovim = customNvim pkgs;
   programs.zsh = customZsh pkgs;
   programs.helix = customHelix pkgs;
+  programs.niri = customNiri config pkgs;
   home.packages = with pkgs;[
     anki-bin
     catppuccin-gtk
