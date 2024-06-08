@@ -158,6 +158,10 @@ in {
       package = pkgs.niri-stable;
     };
 
+    kdeconnect = {
+      enable = true;
+    };
+
     starship = {
       enable = true;
       settings = {

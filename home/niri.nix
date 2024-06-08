@@ -34,7 +34,7 @@ in
         x = 0;
         y = 0;
       };
-      variable-refresh-rate = true;
+      # variable-refresh-rate = true;
     };
 
     outputs."DP-1" = {
@@ -43,7 +43,7 @@ in
         width = 1920;
         refresh = 75.0;
       };
-      variable-refresh-rate = true;
+      # variable-refresh-rate = true;
       position = {
         x = 1920;
         y = 60;
@@ -96,7 +96,26 @@ in
     };
 
     spawn-at-startup = [
-      { command = ["bash" "-c" "~/.config/start.sh"]; }
+      # { command = ["bash" "-c" "~/.config/start.sh"]; }
+      { command = ["bash" "-c" "waybar &"]; }
+      { command = ["bash" "-c" "waypaper --restore &"]; }
+      { command = [
+        "bash" "-c"
+        "swayidle" 
+        "-w" 
+        "timeout 300 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"
+        "before-sleep 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"
+        "lock 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"]; }
+      { command = ["bash" "-c" "nm-applet" "&"]; }
+      { command = ["bash" "-c" "blueman-applet" "&"]; }
+      { command = [
+        "bash" "-c"
+        "dbus-update-activation-environment"          
+        "--systemd"
+        "WAYLAND_DISPLAY"
+        "XDG_CURRENT_DESKTOP &"]; }
+      { command = ["bash" "-c" "export" "$(dbus-launch)"]; }
+      { command = ["bash" "-c" "kdeconnect-indicator" "&"]; }
     ];
 
     screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%s.png";
