@@ -130,7 +130,7 @@ in
       "Alt+Shift+Slash".action = show-hotkey-overlay;
       "Alt+Return".action.spawn = "alacritty";
       "Alt+Shift+Return".action.spawn = "fuzzel";
-      "Alt+L".action.spawn = ["swaylock" "-f" "image" "~/Pictures/wallpaper-master/nixos.png" "--clock"];
+      "Alt+L".action.spawn = ["swaylock" "-f" "--image" "~/Pictures/wallpaper-master/nixos.png" "--clock"];
       "XF86AudioRaiseVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
       "XF86AudioLowerVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"];
       "XF86AudioMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
