@@ -100,12 +100,17 @@ in
       { command = ["bash" "-c" "waybar &"]; }
       { command = ["bash" "-c" "waypaper --restore &"]; }
       { command = [
-        "bash" "-c"
-        "swayidle" 
-        "-w" 
-        "timeout 300 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"
-        "before-sleep 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"
-        "lock 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"]; }
+        "bash" 
+        "-c"
+        """
+        swayidle 
+        -w 
+        timeout 300 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'
+        before-sleep 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'
+        lock 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'
+        """
+        ]; 
+        }
       { command = ["bash" "-c" "nm-applet" "&"]; }
       { command = ["bash" "-c" "blueman-applet" "&"]; }
       { command = [
