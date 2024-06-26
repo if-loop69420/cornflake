@@ -4,7 +4,7 @@ let
 
 in
 {
-  enable = false;
+  enable = true;
   shellAliases = {
     ll = "ls -l";
     ns = "nix --experimental-features 'nix-command flakes' search nixpkgs";
@@ -43,7 +43,7 @@ in
 
   initExtraFirst = '' 
     if [ "$TMUX" = "" ]; then tmux; fi
-    eval "$(direnv hook zsh)"
+    # eval "$(direnv hook zsh)"
     pfetch
   '';
 }
