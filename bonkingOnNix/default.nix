@@ -213,8 +213,8 @@ in {
     extraGroups = [ "networkmanager" "dialout" "wheel" "docker" "libvirtd" "adbuser" "video" "input" "kvm"];
   };
   users.extraGroups.vboxusers.members = ["jeremy"];
-  users.defaultUserShell = pkgs.nushell;
-  environment.shells = with pkgs; [nushell];
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [zsh];
 
   xdg.portal = {
     enable = true;

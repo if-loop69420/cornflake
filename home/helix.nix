@@ -20,6 +20,8 @@ pkgs:
     {
       name = "nix";
       auto-format = true;
+      file-types = ["nix"];
+      language-server = { command="nixd";};
     }
     {
       name = "rust";
@@ -39,6 +41,7 @@ pkgs:
     }
     {
       name = "html";
+      auto-format = true;
       injection-regex = "html";
       file-types = ["svelte" "html"];
       language-server = { command="html-languageserver";};

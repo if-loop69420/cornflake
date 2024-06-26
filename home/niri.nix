@@ -71,24 +71,24 @@ in
         enable = true;
         active = { color = "rgb(68, 71, 90)"; };
         inactive = { color = "rgb(40 42 54)"; };
-        width = 4;
+        width = 2;
       };
 
       border = {
         enable = true;
-        width = 4;
+        width = 5;
         active = { gradient = {
-            from = "#BD93F9";
-            to = "#FF79C6";
-            angle = 345;
+            from = "#0C0B11";
+            to = "#CAD4ED";
+            angle = 0;
             relative-to = "window";
           }; 
         };
 
         inactive = { gradient = {
-            from = "#50FA7B";
-            to = "#8BE9FD";
-            angle = 345;
+            from = "#EFE6EE";
+            to = "#762316";
+            angle = 0;
             relative-to = "window";
           }; 
         };
@@ -102,14 +102,7 @@ in
       { command = [
         "bash" 
         "-c"
-        """
-        swayidle 
-        -w 
-        timeout 300 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'
-        before-sleep 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'
-        lock 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'
-        """
-        ]; 
+        "swayidle -w timeout 300 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock' before-sleep 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock' lock 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"]; 
         }
       { command = ["bash" "-c" "nm-applet" "&"]; }
       { command = ["bash" "-c" "blueman-applet" "&"]; }

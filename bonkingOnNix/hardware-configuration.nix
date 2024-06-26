@@ -15,6 +15,8 @@
     "vm.swappiness" = 60;
   };
 
+  console.keyMap = "de";
+
   boot.kernelParams = [ 
     "libata.force=1:disable,2:disable,3:disable"
     # "nvidia-drm.modset=1"
@@ -69,9 +71,8 @@
     intelBusId = "PCI:0:1:0";
     nvidiaBusId = "PCI:1:0:0";
   };
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.pulseaudio.enable = false;
 

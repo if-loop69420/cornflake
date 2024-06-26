@@ -34,16 +34,17 @@ in
     firefox-wayland
     anki-bin
     grimblast
+    nixd
   ];
 
   programs.zoxide = {
     enable = true;
-    enableNushellIntegration = true;
+    # enableNushellIntegration = true;
   };
 
   programs.carapace = {
     enable = true;
-    enableNushellIntegration = true;
+    # enableNushellIntegration = true;
   };
 
   programs.starship = {
@@ -115,7 +116,6 @@ in
     extensions = with pkgs.vscode-extensions; [
       dracula-theme.theme-dracula
       vscodevim.vim
-      matklad.rust-analyzer
       vadimcn.vscode-lldb
     ];
   };
