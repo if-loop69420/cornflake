@@ -35,6 +35,8 @@ in
     anki-bin
     grimblast
     nixd
+    vial
+    xwayland-satellite
   ];
 
   programs.zoxide = {

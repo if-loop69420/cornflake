@@ -11,8 +11,10 @@
 
     udev = {
       enable = true;
-      packages = [
-        pkgs.android-udev-rules
+      packages = with pkgs; [
+        android-udev-rules
+        via
+        vial
       ];
     };
 
