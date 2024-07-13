@@ -94,7 +94,7 @@
         
           
         USB_AUTOSUSPEND   =0;
-        USB_EXCLUDE_BTUSB =1;
+        USB_EXCLUDE_BTUSB =0;
 
         START_CHARGE_THRESH_BAT0 = 0;
         STOP_CHARGE_THRESH_BAT0 = 0;

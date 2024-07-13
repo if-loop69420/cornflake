@@ -94,10 +94,7 @@ in {
     luajit
     clang
     dbus
-    (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true"];
-    })
-    )
+    waybar
     rofi-wayland
     mako 
     libnotify
