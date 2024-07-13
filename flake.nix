@@ -7,10 +7,14 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri.url = "github:sodiboo/niri-flake";
   };
 
-  outputs = { self, nixpkgs, home-manager, niri, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, niri, lix-module,... }@inputs: 
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -21,6 +25,7 @@
         specialArgs = {inherit inputs;};
         modules = [ 
           ./bonkingOnNix
+          lix-module.nixosModules.default
           niri.nixosModules.niri
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
