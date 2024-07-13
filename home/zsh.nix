@@ -10,6 +10,8 @@ in
     ns = "nix --experimental-features 'nix-command flakes' search nixpkgs";
     sys-rebuild = "sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#bonkingOnNix'";
     nvim = "lvim";
+    steam = "env DISPLAY=:0 steam";
+    Vial = "env DISPLAY=:0 Vial";
   };
   oh-my-zsh = {
     enable = true;

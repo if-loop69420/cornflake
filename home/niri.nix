@@ -8,6 +8,7 @@ in
     input = {
       keyboard.xkb = {
         layout = "de,us";
+        variant = "dvorak,euro"; 
         options = "grp:win_space_toggle";
       };
       touchpad = {
