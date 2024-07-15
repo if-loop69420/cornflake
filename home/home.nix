@@ -24,7 +24,6 @@ in
     wofi
     clipman
     wl-clipboard
-    steam
     foliate
     espeak
     distrobox
@@ -37,6 +36,7 @@ in
     nixd
     vial
     xwayland-satellite
+    slack
   ];
 
   programs.zoxide = {

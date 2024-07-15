@@ -5,6 +5,9 @@
   lib,
   ...
 }: {
+  imports =  [
+  "${inputs.wazuhPkgs}/nixos/modules/services/security/wazuh/wazuh.nix"
+  ];
   services = {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -18,9 +21,16 @@
       ];
     };
 
-    # tailscale = {
-    #   enable = true;
-    # };
+    wazuh = {
+      agent = {
+        enable = true;
+        # ip 10.0.0.152
+        managerIP = "10.0.0.152";
+        # default port        
+        # agent-name Jeremy-Sztavinovszki
+        # group Linux
+      };
+    };
           
     # XServer
     xserver = {
@@ -52,8 +62,6 @@
     
     pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
       pulse.enable = true;
     };
     
@@ -121,5 +129,9 @@
         };
     };
     services.NetworkManager-wait-online.enable = lib.mkForce false;
+
   };
+
+
+  
 }

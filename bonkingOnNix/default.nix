@@ -23,22 +23,22 @@ in {
     options = "--delete-old";
   };
 
-  nix.buildMachines = [
-    {
-      hostName = "builder@172.18.2.21";
-      systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+  # nix.buildMachines = [
+  #   {
+  #     hostName = "builder@172.18.2.21";
+  #     systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
 
-      maxJobs = 24;
-      speedFactor = 4;
-      supportedFeatures = [ "big-parallel" ];
-      mandatoryFeatures = [ ];
+  #     maxJobs = 24;
+  #     speedFactor = 4;
+  #     supportedFeatures = [ "big-parallel" ];
+  #     mandatoryFeatures = [ ];
       
-    }
-  ];
-  nix.distributedBuilds = true;
-  nix.extraOptions = '' 
-    builders-use-substitutes = true
-  '';
+  #   }
+  # ];
+  # nix.distributedBuilds = true;
+  # nix.extraOptions = '' 
+  #   builders-use-substitutes = true
+  # '';
  
   
   # Random stuff 
@@ -50,7 +50,6 @@ in {
     };
   };
   zramSwap.enable = true;
-  sound.enable = true;
   powerManagement = {
     enable = true;
     powertop.enable = true;
@@ -68,13 +67,9 @@ in {
     wget
     docker
     zsh
-    qemu
-    virt-manager
     git
     open-vm-tools
     dmenu
-    obs-studio
-    handbrake
     podman
     dunst
     pavucontrol
@@ -102,9 +97,6 @@ in {
     swaylock
     networkmanagerapplet
     pv
-    qtcreator
-    espeak
-    OVMFFull
     ccls
     zls
     polkit_gnome
@@ -118,9 +110,8 @@ in {
     vulkan-validation-layers
     fuzzel
     jq
-    waypaper
     swww
-    cage
+    pfetch
   ];
  
   programs = {
