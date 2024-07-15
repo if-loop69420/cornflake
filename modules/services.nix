@@ -93,8 +93,7 @@
         CPU_HWP_DYN_BOOST_ON_BAT=0;
         
           
-        USB_AUTOSUSPEND   =0;
-        USB_EXCLUDE_BTUSB =0;
+        USB_AUTOSUSPEND   =1;
 
         START_CHARGE_THRESH_BAT0 = 0;
         STOP_CHARGE_THRESH_BAT0 = 0;

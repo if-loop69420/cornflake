@@ -121,6 +121,7 @@ in {
     waypaper
     swww
     cage
+    busybox
   ];
  
   programs = {
