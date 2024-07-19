@@ -50,7 +50,6 @@ in {
     };
   };
   zramSwap.enable = true;
-  sound.enable = true;
   powerManagement = {
     enable = true;
     powertop.enable = true;
@@ -86,7 +85,6 @@ in {
     firefox
     firefox-wayland
     alacritty
-    emacs
     netcat-openbsd
     gcc
     glib

@@ -5,6 +5,7 @@ let
   customZsh = import ./zsh.nix;
   customHelix = import ./helix.nix;
   customNiri = import ./niri.nix;
+  # customEmacs = import ./emacs.nix;
 in 
 {
   home.stateVersion="24.05";
