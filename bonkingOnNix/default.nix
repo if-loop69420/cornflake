@@ -147,6 +147,8 @@ in {
     };
     steam = {
       enable = false;
+			dedicatedServer.openFirewall = true;
+ 			localNetworkGameTransfers.openFirewall = true;
     };
 
     niri = {

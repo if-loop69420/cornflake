@@ -5,7 +5,7 @@ let
   customZsh = import ./zsh.nix;
   customHelix = import ./helix.nix;
   customNiri = import ./niri.nix;
-  # customEmacs = import ./emacs.nix;
+  customEmacs = import ./emacs/emacs.nix;
 in 
 {
   home.stateVersion="24.05";
@@ -15,6 +15,7 @@ in
   programs.zsh = customZsh pkgs;
   programs.helix = customHelix pkgs;
   programs.niri = customNiri config pkgs;
+  programs.emacs = customEmacs config pkgs;
   home.packages = with pkgs;[
     anki-bin
     catppuccin-gtk
