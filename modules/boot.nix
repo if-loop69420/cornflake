@@ -38,7 +38,10 @@
           kernelPatches = [
           {
             name = "zen";
-            patch = ./linux-v6.10.2-zen1.patch.zst;
+            patch = fetchurl {
+              url = "https://github.com/zen-kernel/zen-kernel/releases/download/v6.10.2-zen1/linux-v6.10.2-zen1.patch.zst";
+              hash = "sha256-ofRL2nTxTsfv/Rxp/Z9Szdijo8wRRtBt7aJcGHZ6l2s=";
+            };
           }];
           extraStructuredConfig = (builtins.readFile ./.config);
           extraMeta.branch = "6.10";
