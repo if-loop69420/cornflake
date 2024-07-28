@@ -12,7 +12,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernel.sysctl = {
-    "vm.swappiness" = 60;
+    "vm.swappiness" = 80;
   };
 
   console.keyMap = "de";
@@ -73,7 +73,7 @@
   };
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
   hardware.pulseaudio.enable = false;
 
   hardware.bluetooth = {

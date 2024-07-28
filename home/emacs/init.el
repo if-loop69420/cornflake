@@ -95,7 +95,9 @@
     :prefix "SPC"
     :global-prefix "C-SPC")
 
-  (sztavi/leader-keys
-    "t"  '(:ignore t :which-key "toggles")
-    "tt" '(counsel-load-theme :which-key "choose theme")))
+  )
 
+(use-package term
+	:commands term
+	:config
+	(setq explicit-shell-file-name "zsh"))
