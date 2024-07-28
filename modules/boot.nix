@@ -36,7 +36,7 @@
             hash = "sha256-c9hSDdnLpaz8XnII52s12XQLiq44IQqSJOMuxMDSm3A=";
           };
           kernelPatches = [];
-          extraConfig = (builtins.readFile ./.config);
+          extraStructuredConfig = (builtins.readFile ./.config);
           extraMeta.branch = "6.10";
         } // (args.argsOverrice or {}));
       custom_linux = pkgs.callPackage custom_linux_pkg{};
