@@ -27,19 +27,19 @@
 
     kernelPackages = 
     let
-      custom_linux = {fetchurl, buildLinux, ...} @ args:
-        buildLinux (args rec {
+      custom_linux_pkg = {fetchurl, buildLinux, ...} @ args:
+        buildLinux (args // rec {
           version = "6.10.2";
           modDirVersion = version;
           src = fetchurl {
             url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.10.2.tar.xz";
-            hash = "";
+            hash = "sha256-c9hSDdnLpaz8XnII52s12XQLiq44IQqSJOMuxMDSm3A=";
           };
           kernelPatches = [];
           extraConfig = (builtins.readFile ./.config);
           extraMeta.branch = "6.10";
-        } (args.argsOverrice or {}));
-      custom_linux = pkgs.callPackage custom_linux{};
+        } // (args.argsOverrice or {}));
+      custom_linux = pkgs.callPackage custom_linux_pkg{};
     in 
       pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor custom_linux);
     initrd = {
