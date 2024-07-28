@@ -4,13 +4,13 @@
   ...
 }: {
   boot = {
-    kernelPatches = [
-      {
-        name = "Kernel_Customization";
-        patch = null;
-        extraConfig = (builtins.readFile ./.config);
-      }
-    ];
+    # kernelPatches = [
+    #   {
+    #     name = "Kernel_Customization";
+    #     patch = null;
+    #     # extraConfig = (builtins.readFile ./.config);
+    #   }
+    # ];
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -25,7 +25,23 @@
       "wasm32-wasi"
     ];
 
-    kernelPackages = pkgs.linuxPackages_6_10;
+    kernelPackages = 
+    let
+      custom_linux = {fetchurl, buildLinux, ...} @ args:
+        buildLinux (args rec {
+          version = "6.10.2";
+          modDirVersion = version;
+          src = fetchurl {
+            url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.10.2.tar.xz";
+            hash = "";
+          };
+          kernelPatches = [];
+          extraConfig = (builtins.readFile ./.config);
+          extraMeta.branch = "6.10";
+        } (args.argsOverrice or {}));
+      custom_linux = pkgs.callPackage custom_linux{};
+    in 
+      pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor custom_linux);
     initrd = {
       secrets = {
         "/crypto_keyfile.bin" = null;
