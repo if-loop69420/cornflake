@@ -35,7 +35,11 @@
             url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.10.2.tar.xz";
             hash = "sha256-c9hSDdnLpaz8XnII52s12XQLiq44IQqSJOMuxMDSm3A=";
           };
-          kernelPatches = [];
+          kernelPatches = [
+          {
+            name = "zen";
+            patch = ./linux-v6.10.2-zen1.patch.zst;
+          }];
           extraStructuredConfig = (builtins.readFile ./.config);
           extraMeta.branch = "6.10";
         } // (args.argsOverrice or {}));
