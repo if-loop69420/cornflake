@@ -36,13 +36,14 @@
             hash = "sha256-c9hSDdnLpaz8XnII52s12XQLiq44IQqSJOMuxMDSm3A=";
           };
           kernelPatches = [
-          {
-            name = "zen";
-            patch = fetchurl {
-              url = "https://github.com/zen-kernel/zen-kernel/releases/download/v6.10.2-zen1/linux-v6.10.2-zen1.patch.zst";
-              hash = "sha256-ofRL2nTxTsfv/Rxp/Z9Szdijo8wRRtBt7aJcGHZ6l2s=";
-            };
-          }];
+            # {
+            #   name = "zen";
+            #   patch = fetchurl {
+            #     url = "https://github.com/zen-kernel/zen-kernel/releases/download/v6.10.2-zen1/linux-v6.10.2-zen1.patch.zst";
+            #     hash = "sha256-ofRL2nTxTsfv/Rxp/Z9Szdijo8wRRtBt7aJcGHZ6l2s=";
+            #   };
+            # }
+          ];
           extraStructuredConfig = (builtins.readFile ./.config);
           extraMeta.branch = "6.10";
         } // (args.argsOverrice or {}));
