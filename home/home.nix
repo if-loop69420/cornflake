@@ -26,7 +26,6 @@ in
     wofi
     clipman
     wl-clipboard
-    steam
     foliate
     espeak
     distrobox

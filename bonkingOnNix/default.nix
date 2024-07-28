@@ -146,7 +146,7 @@ in {
       enable = true;
     };
     steam = {
-      enable = false;
+      enable = true;
 			dedicatedServer.openFirewall = true;
  			localNetworkGameTransfers.openFirewall = true;
     };
@@ -157,6 +157,10 @@ in {
     };
 
     kdeconnect = {
+      enable = true;
+    };
+
+    wireshark = {
       enable = true;
     };
 
@@ -182,16 +186,6 @@ in {
   };
 
   programs.light.enable = true;
-  # programs.sway = {
-  #   enable = true;
-  #   wrapperFeatures.gtk = true;
-  #   # package = pkgs.swayfx;
-  #   extraOptions = [
-  #     "--verbose"
-  #     "--debug"
-  #     "--unsupported-gpu"
-  #   ];
-  # };
   
   # Security 
   security = {

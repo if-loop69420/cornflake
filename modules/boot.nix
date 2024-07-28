@@ -4,6 +4,13 @@
   ...
 }: {
   boot = {
+    kernelPatches = [
+      {
+        name = "Kernel_Customization";
+        patch = null;
+        extraConfig = (builtins.readFile ./.config);
+      }
+    ];
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -18,7 +25,7 @@
       "wasm32-wasi"
     ];
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_6_10;
     initrd = {
       secrets = {
         "/crypto_keyfile.bin" = null;
