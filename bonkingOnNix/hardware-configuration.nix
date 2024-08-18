@@ -11,9 +11,6 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 80;
-  };
 
   console.keyMap = "de";
 
@@ -79,7 +76,8 @@
   hardware.pulseaudio.enable = false;
 
   hardware.bluetooth = {
-      enable = true;
+    enable = true;
+    powerOnBoot = true;
   };
   
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

@@ -24,6 +24,7 @@ in
     swaylock-effects
     swayidle
     wofi
+    librsvg
     clipman
     wl-clipboard
     foliate

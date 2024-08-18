@@ -6,8 +6,8 @@ in
   settings = {
     input = {
       keyboard.xkb = {
-        layout = "de,us";
-        variant = "dvorak,euro"; 
+        layout = "at,us";
+        variant = ",dvorak,,dvorak"; 
         options = "grp:win_space_toggle";
       };
       touchpad = {
