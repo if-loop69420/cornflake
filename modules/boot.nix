@@ -71,7 +71,7 @@
       "slab_nomerge" = "";
       "vm.mmap_rnd_bits"=32;
       "vm.mmap_rnd_compat_bits"=16;
-      "vm.swappiness" = 80;
+      "vm.swappiness" = 20;
       "vm.unprivileged_userfaultfd" = 0;
       "vsyscall" = "none";
     };
