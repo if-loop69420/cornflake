@@ -37,10 +37,9 @@
         '';
       };
       desktopManager.gnome.enable = true;
-      windowManager.xmonad.enable = true;
      
       # General stuff
-      videoDrivers = ["nvidia"];
+      videoDrivers = ["amdgpu-pro"];
       xkb.layout = "at,us";
     };
 

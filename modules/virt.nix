@@ -6,7 +6,7 @@
 }: {
   virtualisation = {
     docker.enable = true;
-    docker.enableNvidia = true;
+    # docker.enableNvidia = true;
     podman.enable = true;
     kvmgt.enable = true;
     libvirtd = {

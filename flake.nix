@@ -41,5 +41,26 @@
           }  
         ];
       };
-  };
+      nixosConfigurations.frame-wok = lib.nixosSystem {
+                inherit system;
+        specialArgs = {inherit inputs;};
+        modules = [ 
+          ./frame-wok
+          lix-module.nixosModules.default
+          niri.nixosModules.niri
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+            home-manager.users.jeremy = {
+              imports = [
+                ./home/home.nix
+              ];
+            };
+          }  
+        ];
+      };
+    };
 }

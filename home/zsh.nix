@@ -8,7 +8,7 @@ in
   shellAliases = {
     ll = "ls -l";
     ns = "nix --experimental-features 'nix-command flakes' search nixpkgs";
-    sys-rebuild = "sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#bonkingOnNix'";
+    sys-rebuild = "sudo nixos-rebuild switch --flake '/home/jeremy/.config/dotfiles/#frame-wok'";
     nvim = "lvim";
     steam = "env DISPLAY=:0 steam";
     Vial = "env DISPLAY=:0 Vial";
