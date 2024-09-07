@@ -39,6 +39,8 @@ in
     nixd
     vial
     xwayland-satellite
+    zettlr
+    zotero
   ];
 
   programs.zoxide = {

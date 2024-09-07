@@ -53,6 +53,7 @@ in {
     enable = true;
     powertop.enable = true;
   };
+  networking.hostName = "frame-wok";
   
   systemd.targets.suspend.enable = true;
   
@@ -99,8 +100,6 @@ in {
     pv
     qtcreator
     polkit_gnome
-    gnupg
-    pinentry
     pulseaudio
     ranger
     piper
@@ -117,6 +116,9 @@ in {
     keepassxc
     pfetch
     btop
+    xclip
+    wl-clipboard-rs
+    gnupg
   ];
  
   programs = {
@@ -155,6 +157,11 @@ in {
 
     kdeconnect = {
       enable = true;
+    };
+
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-curses;
     };
 
     wireshark = {

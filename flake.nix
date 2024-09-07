@@ -12,9 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri.url = "github:sodiboo/niri-flake";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, niri, lix-module,... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, niri, lix-module, nixos-hardware,... }@inputs: 
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -46,6 +47,7 @@
         specialArgs = {inherit inputs;};
         modules = [ 
           ./frame-wok
+          nixos-hardware.nixosModules.framework-13-7040-amd
           lix-module.nixosModules.default
           niri.nixosModules.niri
           home-manager.nixosModules.home-manager {

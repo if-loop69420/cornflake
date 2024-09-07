@@ -9,6 +9,9 @@
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
 
+    fwupd.enable = true;
+    power-profiles-daemon.enable = true;
+
     udev = {
       enable = true;
       packages = with pkgs; [
@@ -39,7 +42,7 @@
       desktopManager.gnome.enable = true;
      
       # General stuff
-      videoDrivers = ["amdgpu-pro"];
+      videoDrivers = ["amdgpu"];
       xkb.layout = "at,us";
     };
 
@@ -57,7 +60,10 @@
     };
     
     flatpak.enable = true;
-    dbus.enable = true;
+    dbus = {
+      enable = true;
+      packages = with pkgs; [ pkgs.gcr ];
+    };
     printing = {
       enable = true;
       drivers = with pkgs; [ hplip gutenprint samsung-unified-linux-driver ptouch-driver];
@@ -72,7 +78,7 @@
     };
     
     tlp = {
-      enable = true;
+      # enable = true;
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -101,7 +107,6 @@
         NATACPI_ENABLE=1;
       };
     };
-    power-profiles-daemon.enable = false;
   };
 
   systemd = {
