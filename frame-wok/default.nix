@@ -54,6 +54,9 @@ in {
     powertop.enable = true;
   };
   networking.hostName = "frame-wok";
+  services.fprintd = {
+    enable = true;
+  };
   
   systemd.targets.suspend.enable = true;
   
@@ -64,6 +67,10 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    typst
+    gimp
+    pandoc
+    dig
     wget
     docker
     zsh
@@ -72,6 +79,7 @@ in {
     git
     obs-studio
     handbrake
+    inkscape
     podman
     dunst
     pavucontrol
@@ -119,6 +127,9 @@ in {
     xclip
     wl-clipboard-rs
     gnupg
+    flatpak
+    texliveFull
+    libreoffice
   ];
  
   programs = {
@@ -145,7 +156,7 @@ in {
       enable = true;
     };
     steam = {
-      enable = true;
+      enable = false;
 			dedicatedServer.openFirewall = true;
  			localNetworkGameTransfers.openFirewall = true;
     };

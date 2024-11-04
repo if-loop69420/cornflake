@@ -9,7 +9,7 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "uas" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -45,6 +45,4 @@
     enable = true;
     enable32Bit = true;
   };
-  hardware.opengl.enable = true;
-
 }

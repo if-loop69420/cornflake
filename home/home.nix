@@ -41,11 +41,22 @@ in
     xwayland-satellite
     zettlr
     zotero
+    ncdu
+    fzf
+    gnome-solanum
+    geogebra6
   ];
 
   programs.zoxide = {
     enable = true;
     # enableNushellIntegration = true;
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      env.TERM = "xterm-256color";
+    };
   };
 
   programs.carapace = {
