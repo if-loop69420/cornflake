@@ -2,7 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,7 +58,12 @@
             };
             home-manager.users.jeremy = {
               imports = [
-                ./home/home.nix
+                ./jeremy/home/home.nix
+              ];
+            };
+            home-manager.users.learnremy = {
+              imports = [
+                ./learnremy/home/home.nix
               ];
             };
           }  

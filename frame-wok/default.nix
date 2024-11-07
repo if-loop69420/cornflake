@@ -78,7 +78,6 @@ in {
     virt-manager
     git
     obs-studio
-    handbrake
     inkscape
     podman
     dunst
@@ -130,6 +129,7 @@ in {
     flatpak
     texliveFull
     libreoffice
+    zettlr
   ];
  
   programs = {
@@ -155,11 +155,6 @@ in {
     dconf = {
       enable = true;
     };
-    steam = {
-      enable = false;
-			dedicatedServer.openFirewall = true;
- 			localNetworkGameTransfers.openFirewall = true;
-    };
 
     niri = {
       enable = true;
@@ -176,6 +171,10 @@ in {
     };
 
     wireshark = {
+      enable = true;
+    };
+
+    virt-manager ={
       enable = true;
     };
 
@@ -216,10 +215,18 @@ in {
   # Users
   users.users.jeremy = {
     isNormalUser = true;
+    home = "/home/jeremy";
     description = "jeremy";
     extraGroups = [ "networkmanager" "dialout" "wheel" "docker" "libvirtd" "adbuser" "video" "input" "kvm"];
   };
   users.extraGroups.vboxusers.members = ["jeremy"];
+
+  users.users.learnremy = {
+    isNormalUser = true;
+    home = "/home/learnremy";
+    description = "jeremy";
+    extraGroups = [ "networkmanager" "dialout" "docker" "libvirtd" "adbuser" "video" "input" "kvm"];
+  };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
 

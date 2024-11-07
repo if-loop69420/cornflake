@@ -39,12 +39,12 @@ in
     nixd
     vial
     xwayland-satellite
-    zettlr
     zotero
     ncdu
     fzf
     gnome-solanum
     geogebra6
+    steam
   ];
 
   programs.zoxide = {

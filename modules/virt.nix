@@ -11,11 +11,6 @@
     kvmgt.enable = true;
     libvirtd = {
       enable = true;
-      allowedBridges = [
-        "virbr0"
-        "nm-bridge"
-      ];
-      qemu.runAsRoot = true;
       qemu.ovmf = {
         enable = true;
         packages = [pkgs.OVMFFull];
