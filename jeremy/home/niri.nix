@@ -4,6 +4,10 @@ let
 in
 {
   settings = {
+    environment = {
+      DISPLAY = ":0";
+    };
+
     input = {
       keyboard.xkb = {
         layout = "at,us";
@@ -12,7 +16,7 @@ in
       touchpad = {
         dwt = true;
         tap = true;
-        natural-scroll = false;
+        natural-scroll = true;
       };
       mouse = {
         natural-scroll = false;
@@ -25,9 +29,9 @@ in
 
     outputs."eDP-1" = {
       mode = {
-        height = 1080;
-        width = 1920;
-        refresh = 60.056;
+        height = 1504;
+        width = 2256;
+        refresh = 60.0;
       };
       position = {
         x = 0;
@@ -101,7 +105,7 @@ in
       { command = [
         "bash" 
         "-c"
-        "swayidle -w timeout 300 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock' before-sleep 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock' lock 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"]; 
+        "swayidle -w timeout 300 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock' timeout 600 'systemctl hibernate' before-sleep 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock' lock 'swaylock -f --image ~/Pictures/wallpaper-master/nixos.png --clock'"]; 
         }
       { command = ["bash" "-c" "nm-applet" "&"]; }
       { command = ["bash" "-c" "blueman-applet" "&"]; }

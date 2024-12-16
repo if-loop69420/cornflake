@@ -14,6 +14,8 @@ in {
   
   system.stateVersion = "24.11";
   nixpkgs.config.allowUnfree = true;
+  nix.package = pkgs.lix;
+  # system.tools.nixos-option.enable = false;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["root" "@wheel"];
   nix.settings.auto-optimise-store = true;
@@ -32,7 +34,6 @@ in {
       speedFactor = 4;
       supportedFeatures = [ "big-parallel" ];
       mandatoryFeatures = [ ];
-      
     }
   ];
   nix.distributedBuilds = true;
@@ -60,7 +61,9 @@ in {
   
   systemd.targets.suspend.enable = true;
   
-  environment.variables.EDITOR = "hx";
+  environment.variables = {
+    EDITOR = "hx";
+  };
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL="1";
@@ -130,6 +133,9 @@ in {
     texliveFull
     libreoffice
     zettlr
+    xwayland-satellite
+    tor-browser
+    clinfo
   ];
  
   programs = {
@@ -224,7 +230,7 @@ in {
   users.users.learnremy = {
     isNormalUser = true;
     home = "/home/learnremy";
-    description = "jeremy";
+    description = "jeremy study account";
     extraGroups = [ "networkmanager" "dialout" "docker" "libvirtd" "adbuser" "video" "input" "kvm"];
   };
   users.defaultUserShell = pkgs.zsh;
@@ -233,7 +239,6 @@ in {
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
     ];
   };
 }

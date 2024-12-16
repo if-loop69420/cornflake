@@ -9,7 +9,7 @@ let
 in 
 {
   home.stateVersion="24.11";
-  home.username="learnermy";
+  home.username="learnremy";
   home.homeDirectory="/home/learnremy";
   programs.neovim = customNvim pkgs;
   programs.zsh = customZsh pkgs;
@@ -38,7 +38,6 @@ in
     grimblast
     nixd
     vial
-    xwayland-satellite
     zotero
     ncdu
     fzf

@@ -24,6 +24,14 @@
     # tailscale = {
     #   enable = true;
     # };
+
+    logind = {
+      powerKey = "hibernate";
+      powerKeyLongPress = "poweroff";
+      lidSwitch = "hibernate";
+      lidSwitchDocked = "hibernate";
+      lidSwitchExternalPower = "hibernate";
+    };
           
     # XServer
     xserver = {
@@ -46,6 +54,16 @@
       xkb.layout = "at,us";
     };
 
+  dnsmasq = {
+    enable = true;
+    settings = {
+      server = [
+        "1.1.1.1"
+        "1.0.0.1"
+        "9.9.9.9"
+      ];
+    };
+  };
     
     libinput = {
       enable = true;
@@ -125,4 +143,5 @@
     };
     services.NetworkManager-wait-online.enable = lib.mkForce false;
   };
+
 }

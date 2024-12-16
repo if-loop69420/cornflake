@@ -29,9 +29,6 @@ in
   };
   envExtra = '' 
     source /home/jeremy/.p10k.zsh 
-    export PATH="$PATH:/home/jeremy/.mix/escripts"
-    export PATH="$PATH:/home/jeremy/.surrealdb/"
-    export PATH="$PATH:/home/jeremy/.emacs.d/bin"
     export PATH="$PATH:${pkgs.rustc}"
     export PATH="$PATH:${pkgs.rustup}"
     export PATH="$PATH:${pkgs.clang}"

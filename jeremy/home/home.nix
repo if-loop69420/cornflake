@@ -8,7 +8,7 @@ let
   customEmacs = import ./emacs/emacs.nix;
 in 
 {
-  home.stateVersion="24.05";
+  home.stateVersion="24.11";
   home.username="jeremy";
   home.homeDirectory="/home/jeremy";
   programs.neovim = customNvim pkgs;
@@ -38,13 +38,11 @@ in
     grimblast
     nixd
     vial
-    xwayland-satellite
     zotero
     ncdu
     fzf
     gnome-solanum
     geogebra6
-    steam
   ];
 
   programs.zoxide = {
@@ -204,6 +202,203 @@ in
 
       bind '"' split-window -v -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
+    '';
+  };
+
+  programs.waybar = {
+    enable = true; 
+    settings = {
+      mainBar = {
+        layer="top";
+        position="top";
+        height = 30;
+        output = [
+          "eDP-1"
+          "DP-1"
+        ];
+        modules-left = ["niri/workspaces" "niri/window" "niri/language" "mpd"];
+        modules-center = ["clock"];
+        modules-right = ["pulseaudio/slider" "pulseaudio" "temperature" "cpu" "memory" "network" "power-profiles-daemon" "upower" "tray" "custom/power"];
+
+        "network" = {
+          interface= "wlp1s0";
+          format= "{ifname}";
+          format-wifi= "{essid} ({signalStrength}%)  ";
+          format-ethernet= "{ipaddr}/{cidr} 󰊗 ";
+          format-disconnected= "";
+          tooltip-format= "{ifname} via {gwaddr} 󰊗";
+          tooltip-format-wifi= "{essid} ({signalStrength}%)  ";
+          tooltip-format-ethernet="{ifname} ";
+          tooltip-format-disconnected="Disconnected ";
+          max-length= 50;
+        };
+
+        "power-profiles-daemon"= {
+          format= "{icon} ";
+          tooltip-format= "Power profile: {profile}\nDriver: {driver}";
+          tooltip= true;
+          format-icons= {
+            default= "";
+            performance= "";
+            balanced= "";
+            power-saver= "";
+          };
+        };
+
+        "cpu"= {
+           interval= 1;
+           format= "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}";
+           format-icons = [
+             "<span color='#69ff94'>▁</span>" 
+             "<span color='#2aa9ff'>▂</span>" 
+             "<span color='#f8f8f2'>▃</span>" 
+             "<span color='#f8f8f2'>▄</span>" 
+             "<span color='#ffffa5'>▅</span>" 
+             "<span color='#ffffa5'>▆</span>" 
+             "<span color='#ff9977'>▇</span>" 
+             "<span color='#dd532e'>█</span>" 
+         ];
+        };
+        "memory"= {
+            interval= 30;
+            format= "{}% ";
+            max-length= 10;
+        };
+
+        "pulseaudio/slider" = {
+          min = 0;
+          max = 100;
+          orientation="horizontal";
+        };
+
+        "pulseaudio"= {
+          format= "{volume}% {icon} ";
+          format-bluetooth= "{volume}% {icon}";
+          format-source = "{volume}% 🎙 ";
+          format-source-muted = " ";  
+          format-muted= " ";
+          on-click = "pavucontrol";
+          default = [" " " " " "];
+          hands-free = "🎙 ";
+          hands-free-muted = " ";  
+        };
+
+        "temperature" = {
+          format = "{temperatureC}°C";
+        };
+
+        "custom/power" = {
+          format = "⏻ ";
+          tooltip = false;
+          menu = "on-click";
+          menu-file = "$HOME/.config/waybar/power_menu.xml";
+          menu-actions = {
+            shutdown = "shutdown";
+            reboot = "reboot";
+            suspend = "systemctl suspend";
+            hibernate = "systemctl hibernate";
+          };
+        };
+      };
+    };
+    
+    style = '' 
+    @define-color background-darker rgba(30, 31, 41, 230);
+    @define-color background #282a36;
+    @define-color selection #44475a;
+    @define-color foreground #f8f8f2;
+    @define-color comment #6272a4;
+    @define-color cyan #8be9fd;
+    @define-color green #50fa7b;
+    @define-color orange #ffb86c;
+    @define-color pink #ff79c6;
+    @define-color purple #bd93f9;
+    @define-color red #ff5555;
+    @define-color yellow #f1fa8c;
+    * {
+        border: none;
+        border-radius: 5px;
+        font-family: Iosevka;
+        font-size: 10pt;
+        min-height: 0;
+        min-width: 10px;
+    }
+
+    window#waybar {
+      color: @foreground;
+      background: linear-gradient(0deg, rgba(40, 42, 54, 0.12) 0%, rgba(40,42,54,0.6) 100%);
+    }
+
+    #workspaces button {
+      color: @foreground;
+      background: rgba(40, 42, 54, 0.5);
+    }
+
+    #workspaces button.active {
+      background: rgba(30, 31, 41, 0.6); 
+    }
+    
+    #pulseaudio-slider slider {
+      min-height: 0px;
+      min-width: 0px;
+      opacity: 0;
+      background-image: none;
+      border: none;
+      border-radius: 10px;
+      box-shadow: none;
+      background: @pink;
+    }
+    #pulseaudio-slider trough {
+      min-height: 10px;
+      min-width: 80px;
+      border-radius: 5px;
+      background-color: rgba(0,0,0,0.4);
+    }
+    #pulseaudio-slider highlight {
+      border-radius: 5px;
+      background-color: @green;
+    }
+    #pulseaudio, #cpu, #memory, #power-profiles-daemon, #upower, #network {
+      margin-left: 2px;
+      margin-right: 2px;
+      padding-left: 8px;
+      padding-right: 8px;
+      background: rgba(30, 31, 41, 0.6); 
+    }
+    #clock {
+     background: rgba(30, 31, 41, 0.6); 
+    }
+    #cpu {
+      background: rgba(40, 42, 54, 0.5);
+      color: @foreground;
+    }
+    #network {
+      min-width: 20px;
+    }
+    #power-profiles-daemon {
+      min-width: 20px;
+    }
+    #memory {
+      background: @purple;
+    }
+    #pulseaudio {
+      background: @orange;
+    }
+    #temperature {
+      background: @red;
+    }
+    #network {
+      background: @green;
+    }
+    #power-profiles-daemon.performance { 
+      background: @red;
+    }
+    #power-profiles-daemon.balanced { 
+      background: #5d8cf0;
+    }
+    #power-profiles-daemon.power-saver { 
+      background: @green;
+    }
     '';
   };
 }
