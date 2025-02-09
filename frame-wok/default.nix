@@ -12,7 +12,7 @@ in {
 
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
   nixpkgs.config.allowUnfree = true;
   nix.package = pkgs.lix;
   # system.tools.nixos-option.enable = false;
@@ -49,7 +49,7 @@ in {
       man-db.enable = true;
     };
   };
-  zramSwap.enable = true;
+  # zramSwap.enable = true;
   powerManagement = {
     enable = true;
     powertop.enable = true;
@@ -108,7 +108,6 @@ in {
     swaylock
     networkmanagerapplet
     pv
-    qtcreator
     polkit_gnome
     pulseaudio
     ranger
@@ -130,12 +129,19 @@ in {
     wl-clipboard-rs
     gnupg
     flatpak
-    texliveFull
     libreoffice
     zettlr
     xwayland-satellite
     tor-browser
-    clinfo
+    texliveMedium
+    screen
+    minicom
+    quickemu
+    yazi
+    prismlauncher
+    jdk8
+    corectrl
+    fw-ectool
   ];
  
   programs = {
@@ -167,8 +173,12 @@ in {
       package = pkgs.niri-stable;
     };
 
+    steam = {
+      enable = false;
+    };
+
     kdeconnect = {
-      enable = true;
+      enable = false;
     };
 
     gnupg.agent = {

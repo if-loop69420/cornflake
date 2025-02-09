@@ -8,7 +8,7 @@ let
   customEmacs = import ./emacs/emacs.nix;
 in 
 {
-  home.stateVersion="24.11";
+  home.stateVersion="25.05";
   home.username="jeremy";
   home.homeDirectory="/home/jeremy";
   programs.neovim = customNvim pkgs;
@@ -43,6 +43,7 @@ in
     fzf
     gnome-solanum
     geogebra6
+    zettlr
   ];
 
   programs.zoxide = {

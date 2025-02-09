@@ -120,6 +120,7 @@ in {
     swww
     cage
     busybox
+    quickemu
   ];
  
   programs = {

@@ -12,12 +12,17 @@
     #   }
     # ];
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        memtest86.enable = true;  
+      };
       efi = {
         canTouchEfiVariables = true;
         # efiSysMountPoint = "/boot/efi";
       };
     };
+
+    crashDump.enable = true;
 
     kernel.sysctl = {
       "apparmor"= 1;
@@ -40,29 +45,29 @@
       "kernel.yama.ptrace_scope"=2;
       "lockdown" = "confidentiality";
       "module.sig_enforce" = 1;
-      # "net.core.bpf_jit_harden" = 2;
-      # "net.ipv4.conf.all.accept_redirects" = 0;
-      # "net.ipv4.conf.all.accept_source_route"=0;
-      # "net.ipv4.conf.all.rp_filter" = 1;
-      # "net.ipv4.conf.all.secure_redirects" = 0;
-      # "net.ipv4.conf.all.send_redirects" = 0;
-      # "net.ipv4.conf.default.accept_redirects" = 0;
-      # "net.ipv4.conf.default.accept_source_route"=0;
-      # "net.ipv4.conf.default.rp_filter" = 1;
-      # "net.ipv4.conf.default.secure_redirects" = 0;
-      # "net.ipv4.conf.default.send_redirects" = 0;
-      # "net.ipv4.icmp_echo_ignore_all" = 1;
-      # "net.ipv4.tcp_dsack"=0;
-      # "net.ipv4.tcp_fack"=0;
-      # "net.ipv4.tcp_ref1337" = 1;
-      # "net.ipv4.tcp_sack"=0;
-      # "net.ipv4.tcp_syncookies" = 1;
-      # "net.ipv6.conf.all.accept_ra"=0;
-      # "net.ipv6.conf.all.accept_redirects" = 0;
-      # "net.ipv6.conf.all.accept_source_route"=0;
-      # "net.ipv6.conf.default.accept_ra"=0;
-      # "net.ipv6.conf.default.accept_redirects" = 0;
-      # "net.ipv6.conf.default.accept_source_route"=0;
+      "net.core.bpf_jit_harden" = 2;
+      "net.ipv4.conf.all.accept_redirects" = 0;
+      "net.ipv4.conf.all.accept_source_route"=0;
+      "net.ipv4.conf.all.rp_filter" = 1;
+      "net.ipv4.conf.all.secure_redirects" = 0;
+      "net.ipv4.conf.all.send_redirects" = 0;
+      "net.ipv4.conf.default.accept_redirects" = 0;
+      "net.ipv4.conf.default.accept_source_route"=0;
+      "net.ipv4.conf.default.rp_filter" = 1;
+      "net.ipv4.conf.default.secure_redirects" = 0;
+      "net.ipv4.conf.default.send_redirects" = 0;
+      "net.ipv4.icmp_echo_ignore_all" = 1;
+      "net.ipv4.tcp_dsack"=0;
+      "net.ipv4.tcp_fack"=0;
+      "net.ipv4.tcp_ref1337" = 1;
+      "net.ipv4.tcp_sack"=0;
+      "net.ipv4.tcp_syncookies" = 1;
+      "net.ipv6.conf.all.accept_ra"=0;
+      "net.ipv6.conf.all.accept_redirects" = 0;
+      "net.ipv6.conf.all.accept_source_route"=0;
+      "net.ipv6.conf.default.accept_ra"=0;
+      "net.ipv6.conf.default.accept_redirects" = 0;
+      "net.ipv6.conf.default.accept_source_route"=0;
       "oops" = "panic";
       "page_alloc.shuffle"= 1;
       "pti" = "on";
@@ -74,6 +79,10 @@
       "vm.swappiness" = 20;
       "vm.unprivileged_userfaultfd" = 0;
       "vsyscall" = "none";
+      "amdgpu.sg_display"=0; 
+      "amdgpu.dcdebugmask"="0x10";
+      "radeon.si_support"=0;
+      "amdgpu.si_support"=1;
     };
     
     binfmt.emulatedSystems = [
@@ -82,7 +91,7 @@
       "wasm32-wasi"
     ];
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_6_12;
     # let
     #   custom_linux_pkg = {fetchurl, buildLinux, ...} @ args:
     #     buildLinux (args // rec {
@@ -110,4 +119,5 @@
     #   };
     # };
   };
+
 }

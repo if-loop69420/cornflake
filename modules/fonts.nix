@@ -11,5 +11,10 @@
     font-awesome_6
     arkpandora_ttf
     liberation_ttf
-  ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+    # nerd-fonts.hack
+    # nerd-fonts.roboto-mono
+    # nerd-fonts.jetbrains-mono
+    # nerd-fonts.sauce-code-pro
+    nerdfonts
+  ];
 }

@@ -21,9 +21,9 @@
       ];
     };
 
-    # tailscale = {
-    #   enable = true;
-    # };
+    tailscale = {
+      enable = true;
+    };
 
     logind = {
       powerKey = "hibernate";
@@ -32,6 +32,8 @@
       lidSwitchDocked = "hibernate";
       lidSwitchExternalPower = "hibernate";
     };
+
+    davfs2.enable = true;
           
     # XServer
     xserver = {
@@ -59,9 +61,10 @@
     settings = {
       server = [
         "1.1.1.1"
-        "1.0.0.1"
         "9.9.9.9"
       ];
+
+      address="/robo4you.at/172.16.0.1";
     };
   };
     
