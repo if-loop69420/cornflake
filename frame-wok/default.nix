@@ -49,7 +49,7 @@ in {
       man-db.enable = true;
     };
   };
-  # zramSwap.enable = true;
+  zramSwap.enable = true;
   powerManagement = {
     enable = true;
     powertop.enable = true;
@@ -63,6 +63,7 @@ in {
   
   environment.variables = {
     EDITOR = "hx";
+    ROC_ENABLE_PRE_VEGA = "1";
   };
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -86,7 +87,6 @@ in {
     dunst
     pavucontrol
     font-awesome
-    microcodeIntel
     dracula-theme 
     gnome-network-displays
     helix
@@ -213,6 +213,10 @@ in {
         };
       };
     };
+
+    java = {
+      enable = true;
+    };
   };
 
   programs.light.enable = true;
@@ -237,12 +241,6 @@ in {
   };
   users.extraGroups.vboxusers.members = ["jeremy"];
 
-  users.users.learnremy = {
-    isNormalUser = true;
-    home = "/home/learnremy";
-    description = "jeremy study account";
-    extraGroups = [ "networkmanager" "dialout" "docker" "libvirtd" "adbuser" "video" "input" "kvm"];
-  };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
 

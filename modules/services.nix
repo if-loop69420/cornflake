@@ -56,17 +56,26 @@
       xkb.layout = "at,us";
     };
 
-  dnsmasq = {
-    enable = true;
-    settings = {
-      server = [
-        "1.1.1.1"
-        "9.9.9.9"
-      ];
+    # dnsmasq = {
+      # enable = true;
+      # settings = {
+        # server = [
+        #   "192.168.1.1"
+        # ];
 
-      address="/robo4you.at/172.16.0.1";
-    };
-  };
+        # address="/robo4you.at/172.16.0.1";
+        # bind-interfaces = true;
+        # interface = ["lo"];
+      # };
+    # };
+
+    # resolved = {
+    #   enable = true;
+    #   # domains = [ "~."];
+    #   dnssec = "true";
+    #   fallbackDns = ["100.100.100.100" "1.1.1.1#one.one.one.one" "172.16.0.1"];
+    #   dnsovertls = "true";
+    # };
     
     libinput = {
       enable = true;
@@ -99,7 +108,7 @@
     };
     
     tlp = {
-      # enable = true;
+      enable = false;
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";

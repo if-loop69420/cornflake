@@ -127,14 +127,6 @@ in
     
   };
 
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      vscodevim.vim
-      vadimcn.vscode-lldb
-    ];
-  };
 
   services.mako = {
     enable = true;

@@ -61,11 +61,6 @@
                 ./jeremy/home/home.nix
               ];
             };
-            home-manager.users.learnremy = {
-              imports = [
-                ./learnremy/home/home.nix
-              ];
-            };
           }  
         ];
       };
